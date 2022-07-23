@@ -13,12 +13,16 @@ class welcomeView extends View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  addHandlerStartQuiz(handler) {
+  addHandlerSendPreferences(handler) {
     this._parentElement
       .querySelector('.main__submit')
-      .addEventListener('click', function (e) {
+      .addEventListener('submit', function (e) {
         e.preventDefault();
-        handler();
+        const dataArr = [
+          ...new FormData(document.getElementById('main__form')),
+        ];
+        const data = Object.fromEntries(dataArr);
+        handler(data);
       });
   }
 
@@ -45,13 +49,13 @@ class welcomeView extends View {
         <div class="settings__container">
     
             <div class="category__container">
-                <select class="select select--category" name="category" id="category-select">
+                <select form="main__form" class="select select--category" name="category" id="category-select">
                     ${this._categoriesMarkup} 
                 </select>
             </div>
     
             <div class="difficulty__container">
-                <select class="select select--difficulty" name="difficulty" id="difficulty-select">
+                <select form="main__form" class="select select--difficulty" name="difficulty" id="difficulty-select">
                     <option value="any">Any Difficulty</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
@@ -62,7 +66,9 @@ class welcomeView extends View {
         </div>
     
         <div class="main__submit">
-            <button class="btn__submit">Start the Quiz</button>
+            <form id="main__form">
+                <button class="btn__submit">Start the Quiz</button>
+            </form>
         </div>
     
         `;

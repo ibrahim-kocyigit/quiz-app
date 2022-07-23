@@ -4,17 +4,15 @@ import * as model from './model';
 import View from './views/View';
 import welcomeView from './views/welcomeView';
 
-const controlGetCategories = function () {};
-
-const controlStartQuiz = function () {
-  console.log('Quiz started');
+const controlStartQuiz = function (data) {
+  console.log(data);
 };
 
 const init = async function () {
   welcomeView.renderSpinner();
   const categories = await model.getCategories();
   welcomeView.render(categories);
-  welcomeView.addHandlerStartQuiz(controlStartQuiz);
+  welcomeView.addHandlerSendPreferences(controlStartQuiz);
 };
 
 init();
