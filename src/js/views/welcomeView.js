@@ -19,7 +19,7 @@ class welcomeView extends View {
       .addEventListener('submit', function (e) {
         e.preventDefault();
         const dataArr = [
-          ...new FormData(document.getElementById('main__form')),
+          ...new FormData(document.getElementById('settings-form')),
         ];
         const data = Object.fromEntries(dataArr);
         handler(data);
@@ -49,13 +49,13 @@ class welcomeView extends View {
         <div class="settings__container">
     
             <div class="category__container">
-                <select form="main__form" class="select select--category" name="category" id="category-select">
+                <select form="settings-form" class="select select--category" name="category" id="category-select">
                     ${this._categoriesMarkup} 
                 </select>
             </div>
     
             <div class="difficulty__container">
-                <select form="main__form" class="select select--difficulty" name="difficulty" id="difficulty-select">
+                <select form="settings-form" class="select select--difficulty" name="difficulty" id="difficulty-select">
                     <option value="any">Any Difficulty</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
@@ -66,7 +66,7 @@ class welcomeView extends View {
         </div>
     
         <div class="main__submit">
-            <form id="main__form">
+            <form id="settings-form">
                 <button class="btn__submit">Start the Quiz</button>
             </form>
         </div>
