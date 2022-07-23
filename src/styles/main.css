@@ -151,7 +151,7 @@ hr {
   background-color: var(--background-color);
   border-radius: 10px;
   box-shadow: 0 1rem 6rem 1rem rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
+  padding: 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
@@ -165,12 +165,30 @@ hr {
   font-style: var(--fs-max);
 }
 
+.app__title .fa-circle-question {
+  margin-right: 1rem;
+}
+
 .main__container {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
   padding-bottom: 1rem;
+}
+
+.spinner {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--body-color);
+}
+
+.fa-spinner {
+  font-size: 3rem;
+}
+
+.loading {
+  margin-top: 1rem;
 }
 
 .main__title {

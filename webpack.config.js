@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackFavicons = require('webpack-favicons');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     bundle: path.resolve(__dirname, 'src/js/controller.js'),
   },
@@ -21,7 +21,7 @@ module.exports = {
     host: '0.0.0.0',
     port: 3000,
     open: true,
-    hot: false,
+    hot: true,
     compress: true,
     historyApiFallback: true,
   },

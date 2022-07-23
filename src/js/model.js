@@ -1,4 +1,6 @@
 // https://opentdb.com/api_config.php
+import { CATEGORY_API } from './config';
+import { getJSON } from './helpers';
 
 export const state = {
   question: {
@@ -12,3 +14,10 @@ export const state = {
   difficulty: '',
   categoryList: [],
 };
+
+export const getCategories = async function () {
+  const data = await getJSON(CATEGORY_API);
+  return data.trivia_categories;
+};
+
+getCategories();

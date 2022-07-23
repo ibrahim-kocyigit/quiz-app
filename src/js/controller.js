@@ -1,8 +1,20 @@
 import '../styles/main.css';
+import '../img/all.js';
 import * as model from './model';
 import View from './views/View';
-import { CATEGORY_API } from './config';
+import welcomeView from './views/welcomeView';
 
-const init = function () {};
+const controlGetCategories = function () {};
+
+const controlStartQuiz = function () {
+  console.log('Quiz started');
+};
+
+const init = async function () {
+  welcomeView.renderSpinner();
+  const categories = await model.getCategories();
+  welcomeView.render(categories);
+  welcomeView.addHandlerStartQuiz(controlStartQuiz);
+};
 
 init();

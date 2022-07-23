@@ -1,4 +1,4 @@
-class View {
+export default class View {
   _data;
   _parentElement = document.querySelector('.main__container');
 
@@ -9,9 +9,18 @@ class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
+  renderSpinner() {
+    const markup = `
+    <div class="spinner">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <p class="loading">Loading...</p>
+    </div> 
+    `;
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
   _clear() {
     this._parentElement.innerHTML = '';
   }
 }
-
-export default new View();
