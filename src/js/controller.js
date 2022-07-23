@@ -4,8 +4,9 @@ import * as model from './model';
 import View from './views/View';
 import welcomeView from './views/welcomeView';
 
-const controlStartQuiz = function (data) {
-  console.log(data);
+const controlStartQuiz = async function (data) {
+  await model.getQuestions(data);
+  model.getQuestion(model.state.currentQuestion - 1);
 };
 
 const init = async function () {

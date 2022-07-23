@@ -1,23 +1,43 @@
-// https://opentdb.com/api_config.php
-import { CATEGORY_API } from './config';
+import { CATEGORY_API, QUESTIONS_API } from './config';
 import { getJSON } from './helpers';
 
 export const state = {
-  question: {
-    text: '',
-    rightAnswer: '',
-    wrongAnswer: '',
+  questions: [],
+  currentQuestion: {
+    category: '',
+    difficulty: '',
+    question: '',
+    correctAnswer: '',
+    incorrectAnswers: [],
   },
   currentScore: 0,
-  currentQuestion: 0,
-  category: '',
-  difficulty: '',
-  categoryList: [],
+  currentQuestion: 1,
 };
 
 export const getCategories = async function () {
-  const data = await getJSON(CATEGORY_API);
-  return data.trivia_categories;
+  try {
+    const data = await getJSON(CATEGORY_API);
+    return data.trivia_categories;
+  } catch (error) {
+    throw error;
+  }
 };
 
-getCategories();
+export const getQuestion = function (questionNo) {
+  const question = state.questions[questionNo];
+  console.log(question);
+  //TODO reformat and save the current question to the state
+};
+
+export const getQuestions = async function (settings) {
+  try {
+    let { category, difficulty } = settings;
+    category = category === 'any' ? '' : `&category=${+category}`;
+    difficulty = difficulty === 'any' ? '' : `&difficulty=${difficulty}`;
+    const data = await getJSON(`${QUESTIONS_API}`);
+    state.questions = data.results;
+    console.log(state.questions);
+  } catch (error) {
+    throw error;
+  }
+};

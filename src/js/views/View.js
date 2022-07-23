@@ -9,11 +9,11 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderSpinner() {
+  renderSpinner(message = 'Loading...') {
     const markup = `
     <div class="spinner">
         <i class="fa-solid fa-spinner fa-spin"></i>
-        <p class="loading">Loading...</p>
+        <p class="loading">${message}</p>
     </div> 
     `;
     this._clear();
