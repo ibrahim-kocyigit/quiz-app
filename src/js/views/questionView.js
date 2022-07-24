@@ -3,16 +3,20 @@ import View from './View';
 class QuestionView extends View {
   _currentScore;
   _lastQuestionNo;
+  _lastQuestionResult;
   _answerButtons = document.querySelectorAll('.btn___answer');
 
-  render(data, currentScore, lastQuestionNo) {
+  render(data, currentScore, lastQuestionNo, lastQuestionResult) {
     this._data = data;
     this._currentScore = currentScore;
     this._lastQuestionNo = lastQuestionNo;
+    this._lastQuestionResult = lastQuestionResult;
     const markup = this._generateMarkup();
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
+
+  renderWrongAnswerModal() {}
 
   addHandlerClickedAnswer(handler) {
     const buttons = document.querySelectorAll('.btn__answer');
@@ -40,7 +44,7 @@ class QuestionView extends View {
     return `
         <div class="main__title">
             <h2>Question: ${this._lastQuestionNo + 1}/10</h2>
-            <h4>Score: ${this._currentScore}/${this._lastQuestionNo}</h4>
+            <h4>Current Score: ${this._currentScore}</h4>
         </div>
 
         <div class="main__text">
