@@ -10,9 +10,20 @@ export const state = {
     correctAnswer: '',
     incorrectAnswers: [],
     allAnswers: [],
+    givenAnswer: '',
   },
   currentScore: 0,
   lastQuestionNo: 0,
+};
+
+export const updateScoreAndQuestionNo = function (answer) {
+  if (answer === true) state.currentScore++;
+  state.lastQuestionNo++;
+  console.log(
+    `Answer was ${answer}. Current score is: ${
+      state.currentScore
+    }. Next question is question number ${state.lastQuestionNo + 1}`
+  );
 };
 
 export const getCategories = async function () {
@@ -24,7 +35,6 @@ export const getCategories = async function () {
   }
 };
 
-// Creates the next question as an object, saves it to the state, and also returns it
 export const getCurrentQuestion = function () {
   const question = state.questions[state.lastQuestionNo];
   state.currentQuestion = {
@@ -50,4 +60,8 @@ export const getQuestions = async function (settings) {
   } catch (error) {
     throw error;
   }
+};
+
+export const updateAnswer = function (answer) {
+  state.currentQuestion.givenAnswer = answer;
 };

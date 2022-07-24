@@ -8,10 +8,46 @@ import questionView from './views/questionView';
 const controlStartQuiz = async function (data) {
   questionView.renderSpinner('Getting the questions...');
   await model.getQuestions(data);
-  const currentScore = model.state.currentScore;
-  const lastQuestionNo = model.state.lastQuestionNo;
-  const currentQuestion = model.getCurrentQuestion();
-  questionView.render(currentQuestion, currentScore, lastQuestionNo);
+  controlNewQuestion();
+};
+
+const controlFinishQuiz = function () {
+  console.log('End');
+};
+
+const controlNewQuestion = function () {
+  questionView.render(
+    model.getCurrentQuestion(),
+    model.state.currentScore,
+    model.state.lastQuestionNo
+  );
+  questionView.addHandlerClickedAnswer(controlClickedAnswer);
+  questionView.addHandlerSubmittedAnswer(controlSubmittedAnswer);
+};
+
+const controlIfQuizEnded = function () {
+  if (model.state.lastQuestionNo > 9) {
+    controlFinishQuiz();
+  } else {
+    controlNewQuestion();
+  }
+};
+
+const controlSubmittedAnswer = function () {
+  if (!model.state.currentQuestion.givenAnswer) return;
+
+  const givenAnswer = model.state.currentQuestion.givenAnswer;
+  const correctAnswer = model.state.currentQuestion.correctAnswer;
+
+  givenAnswer === correctAnswer
+    ? model.updateScoreAndQuestionNo(true)
+    : model.updateScoreAndQuestionNo(false);
+
+  controlIfQuizEnded();
+};
+
+const controlClickedAnswer = function (answer) {
+  model.updateAnswer(answer);
 };
 
 const init = async function () {

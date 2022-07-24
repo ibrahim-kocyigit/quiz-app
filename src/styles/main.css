@@ -226,6 +226,8 @@ hr {
 .btn__answer {
   display: inline-block;
   background: var(--background-color);
+  color: var(--text-color);
+  font-weight: var(--fw-regular);
   padding: 0.6rem 0.4rem;
   border: 1px solid gray;
   border-radius: 10px;
@@ -234,9 +236,12 @@ hr {
   line-height: 1.35;
 }
 
-.btn__answer:hover {
-  background: var(--primary-color-lighter);
-  transition: 0.3s;
+.btn__answer:active {
+  background: var(--primary-color);
+}
+
+.btn__answer--clicked {
+  background: var(--primary-color);
 }
 
 .settings__container {
