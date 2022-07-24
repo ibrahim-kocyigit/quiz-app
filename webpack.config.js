@@ -11,7 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name][contenthash].js',
     clean: true,
-    assetModuleFilename: './img/[name][ext]',
+    assetModuleFilename: '[name][ext]',
   },
   devtool: 'source-map',
   devServer: {

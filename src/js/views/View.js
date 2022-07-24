@@ -11,10 +11,8 @@ export default class View {
 
   renderSpinner(message = 'Loading...') {
     const markup = `
-    <div class="spinner">
-        <i class="fa-solid fa-spinner fa-spin"></i>
-        <p class="loading">${message}</p>
-    </div> 
+    <div class="loader"></div>
+    <p class="loading">${message}</p>
     `;
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);

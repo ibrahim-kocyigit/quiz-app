@@ -1,5 +1,5 @@
 import '../styles/main.css';
-import '../img/all.js';
+
 import * as model from './model';
 import View from './views/View';
 import welcomeView from './views/welcomeView';
@@ -55,6 +55,7 @@ const controlFinishQuiz = function () {
   const difficulty = model.state.difficulty;
   const score = model.state.currentScore;
   resultsView.render({ score, failedQuestions, category, difficulty });
+  resultsView.addHandlerRestart(init);
 };
 
 const init = async function () {
