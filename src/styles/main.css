@@ -16,7 +16,7 @@
   --title-color: #000;
   --title-color--alternate: #f9f7f7;
   --text-color: #000;
-  --text-color-light: #f9f7f7;
+  --text-color-light: #636363;
 
   /*********** Font Family ***********/
   --body-font: 'Roboto', sans-serif;
@@ -48,7 +48,7 @@
     --fs-h4: 1.25rem;
     --fs-normal: 1.118rem;
     --fs-small: 1rem;
-    --fs-smaller: 0.938rem;
+    --fs-smaller: 0.813rem;
   }
 }
 
@@ -156,6 +156,7 @@ hr {
   flex-direction: column;
   row-gap: 1.5rem;
   margin-bottom: 1rem;
+  /* align-items: center; */
 }
 
 .app__title {
@@ -195,8 +196,24 @@ hr {
   text-align: center;
 }
 
-.main__text--centered {
+.main__text {
   text-align: center;
+}
+
+.main__infobox {
+  text-align: center;
+  font-size: var(--fs-smaller);
+  color: var(--text-color-light);
+  font-weight: var(--fw-light);
+}
+
+.main__infobox .bold {
+  font-weight: var(--fw-medium);
+}
+
+.main__infobox .line {
+  color: var(--body-color);
+  font-weight: var(--fw-medium);
 }
 
 .question__answers {
@@ -237,7 +254,8 @@ hr {
   font-weight: var(--fw-light);
 }
 
-.main__submit {
+.main__submit,
+.question__submit {
   text-align: center;
 }
 

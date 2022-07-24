@@ -1,7 +1,6 @@
 import View from './View';
 
-class welcomeView extends View {
-  _data;
+class WelcomeView extends View {
   _categoriesMarkup;
 
   render(data) {
@@ -75,4 +74,4 @@ class welcomeView extends View {
   }
 }
 
-export default new welcomeView();
+export default new WelcomeView();

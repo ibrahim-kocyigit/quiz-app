@@ -9,9 +9,10 @@ export const state = {
     question: '',
     correctAnswer: '',
     incorrectAnswers: [],
+    allAnswers: [],
   },
   currentScore: 0,
-  currentQuestion: 1,
+  lastQuestionNo: 0,
 };
 
 export const getCategories = async function () {
@@ -23,20 +24,29 @@ export const getCategories = async function () {
   }
 };
 
-export const getQuestion = function (questionNo) {
-  const question = state.questions[questionNo];
-  console.log(question);
-  //TODO reformat and save the current question to the state
+// Creates the next question as an object, saves it to the state, and also returns it
+export const getCurrentQuestion = function () {
+  const question = state.questions[state.lastQuestionNo];
+  state.currentQuestion = {
+    category: question.category,
+    difficulty: question.difficulty,
+    question: question.question,
+    correctAnswer: question.correct_answer,
+    incorrectAnswers: question.incorrect_answers,
+    allAnswers: [...question.incorrect_answers, question.correct_answer].sort(
+      () => Math.random() - 0.5
+    ),
+  };
+  return state.currentQuestion;
 };
 
 export const getQuestions = async function (settings) {
   try {
     let { category, difficulty } = settings;
-    category = category === 'any' ? '' : `&category=${+category}`;
+    category = category === 'any' ? '' : `&category=${category}`;
     difficulty = difficulty === 'any' ? '' : `&difficulty=${difficulty}`;
-    const data = await getJSON(`${QUESTIONS_API}`);
+    const data = await getJSON(`${QUESTIONS_API}${category}${difficulty}`);
     state.questions = data.results;
-    console.log(state.questions);
   } catch (error) {
     throw error;
   }

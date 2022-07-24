@@ -1,25 +1,53 @@
-//  <!-- Question View -->
+import View from './View';
 
-//  <!-- <div class="main__title">
-//          <h2>Question: 1/10</h2>
-//          <h4>Score: 0/0</h4>
-//      </div>
+class QuestionView extends View {
+  _currentScore;
+  _lastQuestionNo;
 
-//      <div class="main__text">
-//          <p>
-//              Where is the train station
-//              &quot;Llanfair&shy;pwllgwyngyll&shy;gogery&shy;chwyrn&shy;drobwll&shy;llan&shy;tysilio&shy;gogo&shy;goch&quot;?
-//          </p>
-//      </div>
+  render(data, currentScore, lastQuestionNo) {
+    this._data = data;
+    this._currentScore = currentScore;
+    this._lastQuestionNo = lastQuestionNo;
+    const markup = this._generateMarkup();
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
 
-//      <div class="question__answers">
-//          <button class="btn__answer">Wales</button>
-//          <button class="btn__answer">Moldova</button>
-//          <button class="btn__answer">Czech Republic</button>
-//          <button class="btn__answer">Denmark</button>
-//      </div>
+  _generateMarkup() {
+    console.log(this._data);
+    return `
+        <div class="main__title">
+            <h2>Question: ${this._lastQuestionNo + 1}/10</h2>
+            <h4>Score: ${this._currentScore}/${this._lastQuestionNo}</h4>
+        </div>
 
-//      <div class="question__submit">
-//          <button class="btn__submit">Final Answer</button>
-//      </div>
-//          -->
+        <div class="main__text">
+            <p>
+                ${this._data.question}
+            </p>
+        </div>
+        <div class="question__answers">
+            <button class="btn__answer">${this._data.allAnswers[0]}</button>
+            <button class="btn__answer">${this._data.allAnswers[1]}</button>
+            <button class="btn__answer">${this._data.allAnswers[2]}</button>
+            <button class="btn__answer">${this._data.allAnswers[3]}</button>
+        </div>
+
+        <div class="question__submit">
+            <button class="btn__submit">Final Answer</button>
+        </div>
+        <div class="main__infobox">
+        <p><span class="bold">Category:</span> ${
+          this._data.category
+        }<span class="line"></span> | <span class="bold"> Difficulty: </span>${
+      this._data.difficulty[0].toUpperCase() +
+      this._data.difficulty.slice(1).toLowerCase()
+    } 
+        </p>
+    </div>
+
+        `;
+  }
+}
+
+export default new QuestionView();
