@@ -108,6 +108,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.reload {
+  color: var(--primary-color);
+  margin-top: 1rem;
+}
+
 img {
   max-width: 100%;
   height: auto;

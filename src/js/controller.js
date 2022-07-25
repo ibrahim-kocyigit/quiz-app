@@ -7,9 +7,15 @@ import questionView from './views/questionView';
 import resultsView from './views/resultsView';
 
 const controlStartQuiz = async function (data) {
-  questionView.renderSpinner('Getting the questions...');
-  await model.getQuestions(data);
-  controlNewQuestion();
+  try {
+    questionView.renderSpinner('Getting the questions...');
+    await model.getQuestions(data);
+    controlNewQuestion();
+  } catch (error) {
+    welcomeView.renderError(
+      "Couldn't get the questions. Please try different category and/or difficulty."
+    );
+  }
 };
 
 const controlNewQuestion = function () {
@@ -59,11 +65,17 @@ const controlFinishQuiz = function () {
 };
 
 const init = async function () {
-  welcomeView.renderSpinner();
-  model.resetState();
-  const categories = await model.getCategories();
-  welcomeView.render(categories);
-  welcomeView.addHandlerSendPreferences(controlStartQuiz);
+  try {
+    welcomeView.renderSpinner();
+    model.resetState();
+    const categories = await model.getCategories();
+    welcomeView.render(categories);
+    welcomeView.addHandlerSendPreferences(controlStartQuiz);
+  } catch (error) {
+    welcomeView.renderError(
+      "Couldn't connect to the questions database. Please try again later."
+    );
+  }
 };
 
 init();
