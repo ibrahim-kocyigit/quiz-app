@@ -16,8 +16,6 @@ class QuestionView extends View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderWrongAnswerModal() {}
-
   addHandlerClickedAnswer(handler) {
     const buttons = document.querySelectorAll('.btn__answer');
     this._parentElement

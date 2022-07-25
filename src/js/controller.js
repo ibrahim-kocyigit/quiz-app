@@ -1,4 +1,5 @@
 import '../styles/main.css';
+import '../img/favicon.png';
 
 import * as model from './model';
 import View from './views/View';
@@ -38,10 +39,10 @@ const controlSubmittedAnswer = function () {
   } else {
     model.updateUserPerformance(false);
   }
-  controlIfQuizEnded();
+  controlIsQuizEnded();
 };
 
-const controlIfQuizEnded = function () {
+const controlIsQuizEnded = function () {
   if (model.state.lastQuestionNo > 9) {
     controlFinishQuiz();
   } else {
