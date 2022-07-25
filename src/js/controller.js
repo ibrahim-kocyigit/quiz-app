@@ -1,5 +1,4 @@
 import '../styles/main.css';
-import '../img/favicon.png';
 
 import * as model from './model';
 import View from './views/View';
