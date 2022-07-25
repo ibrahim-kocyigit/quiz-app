@@ -1,7 +1,7 @@
 import { CATEGORY_API, QUESTIONS_API } from './config';
 import { getJSON } from './helpers';
 
-export const state = {
+export let state = {
   questions: [],
   currentQuestion: {
     category: '',
@@ -30,6 +30,27 @@ export const updateUserPerformance = function (answer) {
       correctAnswer: state.currentQuestion.correctAnswer,
       givenAnswer: state.currentQuestion.givenAnswer,
     });
+};
+
+export const resetState = function () {
+  state = {
+    questions: [],
+    currentQuestion: {
+      category: '',
+      difficulty: '',
+      question: '',
+      correctAnswer: '',
+      incorrectAnswers: [],
+      allAnswers: [],
+      givenAnswer: '',
+    },
+    currentScore: 0,
+    lastQuestionNo: 0,
+    lastQuestionResult: undefined,
+    failedQuestions: [],
+    category: '',
+    difficulty: '',
+  };
 };
 
 export const getCategories = async function () {

@@ -60,6 +60,7 @@ const controlFinishQuiz = function () {
 
 const init = async function () {
   welcomeView.renderSpinner();
+  model.resetState();
   const categories = await model.getCategories();
   welcomeView.render(categories);
   welcomeView.addHandlerSendPreferences(controlStartQuiz);
