@@ -1,4 +1,4 @@
 node_modules
 dist
-.reference-forkify
 .DS_Store
+.prettierrc
